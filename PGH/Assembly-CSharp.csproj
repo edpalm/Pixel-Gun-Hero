@@ -54,10 +54,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera\CameraSystem.cs" />
-     <Compile Include="Assets\Scripts\Player\Grounded.cs" />
-     <Compile Include="Assets\Scripts\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\Player\Player_Combat.cs" />
-     <Compile Include="Assets\Scripts\Player\Player_Health.cs" />
+     <Compile Include="Assets\Scripts\Player\Attributes.cs" />
+     <Compile Include="Assets\Scripts\Player\Movement\Groundchecker.cs" />
+     <Compile Include="Assets\Scripts\Player\Movement\Jumping.cs" />
+     <Compile Include="Assets\Scripts\Player\Movement\MovementHorizontal.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerAttributes.cs" />
      <None Include="Assets\Gun Hero 1\Read Me.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>F:/Unity Games/Pixel Gun Hero/PGH/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
