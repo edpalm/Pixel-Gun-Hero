@@ -24,17 +24,11 @@ public class Jumping : MonoBehaviour
 		CheckForInput();
 		AnimateAir();
 }
-/* 
-void FixedUpdate ()
-{
-	
-} */
 
 	void CheckForInput()
 	{
 		if (Input.GetButtonDown("Jump"))
 		{
-			Debug.Log(playerAttributes.grounded);
 			if (playerAttributes.grounded)
 			{
 				Jump();

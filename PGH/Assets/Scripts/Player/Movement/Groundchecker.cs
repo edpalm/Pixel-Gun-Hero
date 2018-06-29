@@ -12,24 +12,18 @@ public class Groundchecker : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		Debug.Log("Enter");
 		playerAttributes.grounded = true;
 	}
 
 	void OnTriggerStay2D(Collider2D collider)
 	{
-		Debug.Log("Stay");
 		playerAttributes.grounded = true;
 	}
 
 	void OnTriggerExit2D(Collider2D collider)
 	{
-		Debug.Log("Exit");
 		playerAttributes.grounded = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
 }

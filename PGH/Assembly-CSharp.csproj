@@ -59,6 +59,9 @@
      <Compile Include="Assets\Scripts\Player\Movement\Jumping.cs" />
      <Compile Include="Assets\Scripts\Player\Movement\MovementHorizontal.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttributes.cs" />
+     <Compile Include="Assets\Scripts\Player\Skills\BFG.cs" />
+     <Compile Include="Assets\Scripts\Player\Skills\Gun.cs" />
+     <Compile Include="Assets\Scripts\Player\Skills\Shield.cs" />
      <None Include="Assets\Gun Hero 1\Read Me.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>F:/Unity Games/Pixel Gun Hero/PGH/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
