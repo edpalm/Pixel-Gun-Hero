@@ -53,15 +53,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Old_Scripts\Movement\Jumping.cs" />
+     <Compile Include="Assets\Old_Scripts\Movement\MovementHorizontal.cs" />
+     <Compile Include="Assets\Old_Scripts\Skills\Gun.cs" />
+     <Compile Include="Assets\Scripts\BulletBehaviour.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraSystem.cs" />
-     <Compile Include="Assets\Scripts\Player\Attributes.cs" />
-     <Compile Include="Assets\Scripts\Player\Movement\Groundchecker.cs" />
-     <Compile Include="Assets\Scripts\Player\Movement\Jumping.cs" />
-     <Compile Include="Assets\Scripts\Player\Movement\MovementHorizontal.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerAttributes.cs" />
-     <Compile Include="Assets\Scripts\Player\Skills\BFG.cs" />
-     <Compile Include="Assets\Scripts\Player\Skills\Gun.cs" />
-     <Compile Include="Assets\Scripts\Player\Skills\Shield.cs" />
+     <Compile Include="Assets\Scripts\Player\Groundchecker.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <None Include="Assets\Gun Hero 1\Read Me.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>F:/Unity Games/Pixel Gun Hero/PGH/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
