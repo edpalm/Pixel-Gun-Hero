@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour {
 
 	// Player movement speed for walking and running.
 	private bool isRunning;
-	public float initialSpeed = 7f;
-	public float runMultiplier = 1.5f;
-	public float playerSpeed = 7f;
+	public float initialSpeed;
+	public float runMultiplier;
+	public float playerSpeed;
 
 	// Player direction.
 	private bool isFacingRight;
@@ -20,9 +20,8 @@ public class PlayerController : MonoBehaviour {
 	// Jumping.
 	public int playerJumpPower;
 	public bool grounded;
-	public bool canDoubleJump;
-
-	public bool jumped;
+	private bool canDoubleJump;
+	private bool jumped;
 
 	// Dashing.
 	private bool isDashing;
@@ -32,20 +31,22 @@ public class PlayerController : MonoBehaviour {
 	private float buttonPressResetTime;
 	private int buttonPressCounter = 0;
 	public float dashDuration;
-
 	private float dashTime;
+	private bool canDashMidAir;
 
 // Attacking.
+	 // Projectile ref and spawnpoint from char.
 	public GameObject bullet;
 	public Vector2 velocity;
 	public Vector2 offset = new Vector2(0.4f, 0);
+// Attack speed.
 	public float fireRate;
 	private float nextFire;
-
-	public bool attack;
+	private bool attack;
 
 	// Use this for initialization
 	void Start () {
+		canDashMidAir = true;
 		attack = false;
 		jumped = false;
 		isRunning = false;
@@ -59,23 +60,31 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		CheckPlayerInput();	
+		CheckPlayerInput();
+		if (grounded)	
+		{
+			canDashMidAir = true;
+		}
 		moveX = Input.GetAxis("Horizontal");
 		CheckPlayerFacing();
-		PlayAnimations();
+		Animate();
 	}
 	void FixedUpdate () 
 	{
-		// Perform player movement.
 		PerformActions();
 	}
 
+	///<summary>
+	/// Check player inputs.
+	/// Set action variables.
+	/// </summary>
 	void CheckPlayerInput ()
 	{
 		if (Input.GetButtonDown("Gun") && Time.time > nextFire)
 		{
 			attack = true;
 		}
+
 		if (Input.GetButton("Sprint"))
 		{
 			isRunning = true;
@@ -84,6 +93,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			isRunning = false;
 		}
+
 		if (Input.GetButtonDown("Jump"))
 		{
 			jumped = true;
@@ -91,14 +101,22 @@ public class PlayerController : MonoBehaviour {
 		CheckForDoubleTap();
 	}
 
+	///<summary>
+	/// Check double tap of left/right movement hotkeys.
+	/// Set dash action.
+	///</summary>
 	void CheckForDoubleTap()
 	{
 		if (Input.GetButtonDown("Horizontal"))
 		{
-			if (buttonPressResetTime > 0 && buttonPressCounter == tapsToDash - 1)
+			if (buttonPressResetTime > 0 && buttonPressCounter == tapsToDash - 1 && canDashMidAir)
 			{
 				// If doubletap.
 				isDashing = true;
+				if(!grounded)
+				{
+					canDashMidAir = false;
+				}
 			}
 			else 
 			{
@@ -117,6 +135,9 @@ public class PlayerController : MonoBehaviour {
 			buttonPressCounter = 0;
 		}
 	}
+	///<summary>
+	/// Adjust the way the player is facing according to movement.
+	///</summary> 
 	void CheckPlayerFacing ()
 	{
 		// Player direction.
@@ -129,7 +150,9 @@ public class PlayerController : MonoBehaviour {
 			InvertPlayerDirection();
 		}
 	}
-
+	///<summary>
+	/// Change the direction the player is facing.
+	///</summary>
 	void InvertPlayerDirection()
 	{
 		isFacingRight = !isFacingRight;
@@ -137,17 +160,12 @@ public class PlayerController : MonoBehaviour {
 		localScale.x *= -1;
 		transform.localScale = localScale; 
 	}
-
+	///<summary>
+	/// Perform player action based on action variables.
+	///</summary>
 	void PerformActions()
 	{	
-		if (attack)
-		{
-			nextFire = Time.time + fireRate;
-			GameObject gameObject = (GameObject) Instantiate (bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
-			gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (velocity.x * transform.localScale.x, velocity.y);
-			attack = false;
-		}
-		else if (isDashing)
+		if (isDashing)
 		{
 			if (dashTime > 0)
 			{	
@@ -167,6 +185,14 @@ public class PlayerController : MonoBehaviour {
 				dashTime = dashDuration;
 			}
 		}
+		else if (attack && !isDashing)
+		{
+			nextFire = Time.time + fireRate;
+			GameObject gameObject = (GameObject) Instantiate (bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
+			gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (velocity.x * transform.localScale.x, velocity.y);
+			attack = false;
+		}
+		
 		else if (jumped)
 		{
 			if (grounded)
@@ -200,22 +226,25 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void PlayAnimations()
+	///<summary>
+	/// Animate the player model.
+	///</summary>
+	void Animate()
 	{
-		if (!grounded && attack)
+		if (!grounded && Input.GetButtonDown("Gun") && Time.time > nextFire )
 		{
 			animator.SetTrigger("Jumpattack");
 		}
-		else if (attack)
+		else if (Input.GetButtonDown("Gun") && Time.time > nextFire)
 		{
 			animator.SetTrigger("Attack");
+			Debug.Log("Attacked!");
 		}
-		if (isDashing)
+		else if (isDashing)
 		{
 			animator.SetTrigger("Dash");
 		}
-
-		if (!grounded)
+		else if (!grounded)
 		{
 			animator.SetBool("Jump", true);
 			animator.SetBool("Landed", false);

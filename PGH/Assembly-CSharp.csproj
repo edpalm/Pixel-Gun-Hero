@@ -53,9 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Old_Scripts\Movement\Jumping.cs" />
-     <Compile Include="Assets\Old_Scripts\Movement\MovementHorizontal.cs" />
-     <Compile Include="Assets\Old_Scripts\Skills\Gun.cs" />
      <Compile Include="Assets\Scripts\BulletBehaviour.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraSystem.cs" />
      <Compile Include="Assets\Scripts\Player\Groundchecker.cs" />
