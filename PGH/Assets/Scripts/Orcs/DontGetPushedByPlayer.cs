@@ -24,9 +24,7 @@ public class DontGetPushedByPlayer : MonoBehaviour
 	{
 		Debug.Log(other.gameObject.tag);
 		if (other.gameObject.tag == "Player" || other.gameObject.tag == "Orc")
-		{
-			Debug.Log("Hit by player");
-			
+		{			
 			rigidBody2d.isKinematic = true;
 			rigidBody2d.velocity = Vector2.zero;
 			// hit by player variable?

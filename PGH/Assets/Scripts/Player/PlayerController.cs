@@ -121,7 +121,6 @@ public class PlayerController : MonoBehaviour {
 			else 
 			{
 				buttonPressCounter += 1;
-				Debug.Log(buttonPressCounter);
 				buttonPressResetTime = dashResetTime;
 			}
 		}
@@ -238,7 +237,6 @@ public class PlayerController : MonoBehaviour {
 		else if (Input.GetButtonDown("Gun") && Time.time > nextFire)
 		{
 			animator.SetTrigger("Attack");
-			Debug.Log("Attacked!");
 		}
 		else if (isDashing)
 		{
