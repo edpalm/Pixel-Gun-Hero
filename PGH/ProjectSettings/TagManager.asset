@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameOver
+  - PlayerBullet
+  - Enemy
+  - movementFx
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/* using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,9 +25,10 @@ public class DontGetPushedByPlayer : MonoBehaviour
 		Debug.Log(other.gameObject.tag);
 		if (other.gameObject.tag == "Player" || other.gameObject.tag == "Orc")
 		{			
-			rigidBody2d.isKinematic = true;
+			rigidBody2d.bodyType = RigidbodyType2D.Kinematic;
+			Debug.Log(rigidBody2d.bodyType);
 			rigidBody2d.velocity = Vector2.zero;
 			// hit by player variable?
 		}
 	}
-}
+} */

@@ -13,9 +13,9 @@ public class Spikes : MonoBehaviour {
 		playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
 	}
 
-	void OnTriggerEnter2D(Collider2D collider)
+	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(collider.gameObject.tag == "Player")
+		if(other.gameObject.tag == "Player")
 		{
 			playerHealth.TakeDamage(damage);
 		}

@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 	private GameObject gameOverText;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 		gameOverText = GameObject.FindGameObjectWithTag("GameOver");
 		gameEnded = false;
@@ -23,7 +24,6 @@ public class GameManager : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.R))
 			{
-				Debug.Log("RRRR");
 				Scene level = SceneManager.GetActiveScene();
 				SceneManager.LoadScene(level.name);
 			}

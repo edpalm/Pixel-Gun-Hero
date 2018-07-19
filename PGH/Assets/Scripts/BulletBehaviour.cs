@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehaviour : MonoBehaviour {
+public class BulletBehaviour : MonoBehaviour 
+{
+	private EnemyHealth enemyHealth;
+	public float damage;
 
 	public float travelTime;
 
 	// Use this for initialization
 	void Start () {
+		enemyHealth = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyHealth>();
 		if (GetComponent<Rigidbody2D>().velocity.x > 0)
 		{
 			GetComponent<SpriteRenderer>().flipX = false;
@@ -17,15 +21,27 @@ public class BulletBehaviour : MonoBehaviour {
 			GetComponent<SpriteRenderer>().flipX = true;
 		}
 
-		Destroy(gameObject, travelTime);
+		if (gameObject != null)
+		{
+			Destroy(gameObject, travelTime);
+		}
 	}
 
 	// Update is called once per frame
 	 /* void Update () {
 	} */
 
-	void OnTriggerStay2D(Collider2D collider)
-	{
-		Destroy(gameObject);
+	void OnTriggerEnter2D(Collider2D other)
+	{	
+		if (gameObject != null)
+		{
+			Destroy(gameObject);
+		}
+		if (other.gameObject.tag == "Enemy")
+		{
+			Debug.Log("Enemy Hit!");
+			other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+			
+		}
 	}
 }
