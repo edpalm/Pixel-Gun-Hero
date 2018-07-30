@@ -59,7 +59,10 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MovingPlatform.cs" />
      <Compile Include="Assets\Scripts\Orcs\DontGetPushedByPlayer.cs" />
+     <Compile Include="Assets\Scripts\Orcs\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Orcs\EnemyHealth.cs" />
+     <Compile Include="Assets\Scripts\Orcs\Ofly\Ofly.cs" />
+     <Compile Include="Assets\Scripts\Orcs\PlayerScanner.cs" />
      <Compile Include="Assets\Scripts\PlatformFall.cs" />
      <Compile Include="Assets\Scripts\Player\Groundchecker.cs" />
      <Compile Include="Assets\Scripts\Player\Health.cs" />

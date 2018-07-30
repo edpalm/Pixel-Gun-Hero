@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Groundchecker : MonoBehaviour {
+public class Groundchecker : MonoBehaviour 
+{
 	private PlayerController player;
 
 	// Use this for initialization
