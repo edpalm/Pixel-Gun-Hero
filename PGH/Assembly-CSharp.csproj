@@ -53,6 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\bombdropper.cs" />
+     <Compile Include="Assets\bombExplosion.cs" />
+     <Compile Include="Assets\Scripts\Bomb.cs" />
      <Compile Include="Assets\Scripts\BulletBehaviour.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraSystem.cs" />
      <Compile Include="Assets\Scripts\DeathBox.cs" />

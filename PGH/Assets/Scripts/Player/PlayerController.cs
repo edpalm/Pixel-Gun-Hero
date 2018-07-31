@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 	private bool canDashMidAir;
 
 // Attacking.
-	 // Projectile ref and spawnpoint from char.
+	 // Projectile reference and spawnpoint from character.
 	public GameObject bullet;
 	public Vector2 velocity;
 	public Vector2 offset = new Vector2(0.4f, 0);

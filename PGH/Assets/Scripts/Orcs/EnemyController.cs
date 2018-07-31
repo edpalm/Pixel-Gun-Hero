@@ -22,6 +22,9 @@ public abstract class EnemyController : MonoBehaviour
 	// Attacking.
 	public bool canAttackPlayer;
 	public bool isAttacking;
+	public float attackRate;
+
+	private float nextAttack;
 	
 	// Use this for initialization
 	void Start () 
@@ -30,7 +33,7 @@ public abstract class EnemyController : MonoBehaviour
 		animator = GetComponent<Animator>();
 		enemyStartingPosition = transform.position.x;
 		enemyPatrolTurnPosition = enemyStartingPosition + patrolRange;
-		isFacingRight = true; // rework?
+		isFacingRight = true;
 	}
 	
 	// Update is called once per frame
@@ -38,18 +41,23 @@ public abstract class EnemyController : MonoBehaviour
 	{
 		if (canAttackPlayer)
 		{
-			Attack();
+			isAttacking = true;
+		}
+		else 
+		{
+			isAttacking = false;
 		}
 		DetermineDirection();
-		// Look for player.
-		// If player found. set variable to true.
-		// If True Attack player.
-		// If False, back to patrol.
 	}
 	
 	void FixedUpdate ()
 	{
-		if (!canAttackPlayer)
+		if (isAttacking && Time.time > nextAttack)
+		{
+			Attack();
+			nextAttack = Time.time + attackRate;
+		}
+		else 
 		{
 			Patrol();
 		}
@@ -90,7 +98,6 @@ public abstract class EnemyController : MonoBehaviour
 
 	void InvertEnemyDirection()
 	{
-		Debug.Log("Invert");
 		isFacingRight = !isFacingRight;
 		Vector2 localScale = gameObject.transform.localScale;
 		localScale.x *= -1;

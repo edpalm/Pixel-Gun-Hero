@@ -33,7 +33,7 @@ public class BulletBehaviour : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{	
-		if (gameObject != null)
+		if (gameObject != null && other.tag != "Scanner")
 		{
 			Destroy(gameObject);
 		}
