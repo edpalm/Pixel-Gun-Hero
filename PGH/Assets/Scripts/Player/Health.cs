@@ -9,8 +9,8 @@ public class Health : MonoBehaviour
 
 	private Animator animator;
 	public bool isAlive = true;
-	public int currentHealth;
-	public int maxHealth = 1;
+	public float currentHealth;
+	public float maxHealth;
 	// Use this for initialization
 	void Start () 
 	{
@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
 		
 	}
 
-	public void TakeDamage(int damage)
+	public void TakeDamage(float damage)
 	{
 		currentHealth = currentHealth - damage;
 		animator.SetTrigger("TookDamage");

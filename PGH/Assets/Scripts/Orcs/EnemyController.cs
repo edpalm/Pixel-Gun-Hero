@@ -6,8 +6,8 @@ public abstract class EnemyController : MonoBehaviour
 {
 
 	// Components.
-	Rigidbody2D enemyRigidBody;
-	Animator animator;
+	protected Rigidbody2D enemyRigidBody;
+	protected Animator animator;
 
 	// Patrol settings.
 	public float enemyStartingPosition;
@@ -23,12 +23,16 @@ public abstract class EnemyController : MonoBehaviour
 	public bool canAttackPlayer;
 	public bool isAttacking;
 	public float attackRate;
-
 	private float nextAttack;
+
+	// Players position for attack directions.
+	GameObject player;
+	protected Transform PlayerXPosition;
 	
 	// Use this for initialization
 	void Start () 
 	{
+		player = GameObject.FindGameObjectWithTag("Player");
 		enemyRigidBody = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		enemyStartingPosition = transform.position.x;
@@ -39,6 +43,7 @@ public abstract class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		PlayerXPosition = player.transform;
 		if (canAttackPlayer)
 		{
 			isAttacking = true;
@@ -52,12 +57,15 @@ public abstract class EnemyController : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
-		if (isAttacking && Time.time > nextAttack)
+		if (isAttacking)
 		{
-			Attack();
+			if (Time.time > nextAttack)
+			{
+				Attack();
 			nextAttack = Time.time + attackRate;
+			}
 		}
-		else 
+		else // if !isAttacking
 		{
 			Patrol();
 		}

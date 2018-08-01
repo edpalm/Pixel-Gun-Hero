@@ -35,11 +35,9 @@ public class PlayerController : MonoBehaviour {
 	private bool canDashMidAir;
 
 // Attacking.
-	 // Projectile reference and spawnpoint from character.
+
+	public Transform bulletSpawner;
 	public GameObject bullet;
-	public Vector2 velocity;
-	public Vector2 offset = new Vector2(0.4f, 0);
-// Attack speed.
 	public float fireRate;
 	private float nextFire;
 	private bool attack;
@@ -187,8 +185,16 @@ public class PlayerController : MonoBehaviour {
 		else if (attack && !isDashing)
 		{
 			nextFire = Time.time + fireRate;
-			GameObject gameObject = (GameObject) Instantiate (bullet, (Vector2)transform.position + offset * transform.localScale.x, Quaternion.identity);
-			gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (velocity.x * transform.localScale.x, velocity.y);
+			if (isFacingRight)
+			{
+				GameObject playerBullet = Instantiate (bullet, bulletSpawner.position, bulletSpawner.rotation);	
+				playerBullet.GetComponent<BulletBehaviour>().velocity = Vector2.right;
+			}
+			else
+			{
+				GameObject playerBullet = Instantiate (bullet, bulletSpawner.position, bulletSpawner.rotation);	
+				playerBullet.GetComponent<BulletBehaviour>().velocity = Vector2.left;
+			}
 			attack = false;
 		}
 		

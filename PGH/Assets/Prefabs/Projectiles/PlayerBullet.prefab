@@ -91,6 +91,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   travelTime: 2
+  velocity: {x: 0, y: 0}
+  bulletSpeed: 20
 --- !u!212 &212982736264001078
 SpriteRenderer:
   m_ObjectHideFlags: 1

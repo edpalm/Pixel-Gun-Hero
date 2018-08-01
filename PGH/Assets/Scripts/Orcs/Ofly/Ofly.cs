@@ -9,6 +9,7 @@ public class Ofly : EnemyController
 	public override void Attack() 
 	{
 		Debug.Log ("Dropping bomb!");
+		animator.SetTrigger("Attack");
 		Instantiate (bomb, bombDropper.position, bombDropper.rotation);
 	}
 }

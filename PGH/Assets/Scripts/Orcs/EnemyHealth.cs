@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour 
 {
-
-	private Rigidbody2D enemyBody;
-
 	private Animator animator;
 	public bool isAlive = true;
 	public float currentHealth;
@@ -16,7 +13,6 @@ public class EnemyHealth : MonoBehaviour
 	{
 		currentHealth = maxHealth;
 		animator = gameObject.GetComponent<Animator>();
-		enemyBody = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
