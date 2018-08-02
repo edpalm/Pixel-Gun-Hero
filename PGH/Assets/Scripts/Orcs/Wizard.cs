@@ -11,6 +11,7 @@ public class Wizard : EnemyController
 	
 	public override void Attack()
 	{	
+		animator.SetTrigger("Attack");
 		enemyRigidBody.velocity = Vector2.zero;
 		Debug.Log("Wizard attacking!");	
 		if (isFacingRight)
@@ -24,7 +25,5 @@ public class Wizard : EnemyController
 			GameObject wizardBullet = (GameObject)Instantiate (bullet, bulletSpawner.position, bulletSpawner.rotation);	
 			wizardBullet.GetComponent<WizardBullet>().velocity = Vector2.left;
 		}
-		
-		
 	}
 }

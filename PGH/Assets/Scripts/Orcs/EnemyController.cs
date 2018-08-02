@@ -43,7 +43,7 @@ public abstract class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		PlayerXPosition = player.transform;
+		PlayerXPosition = player.transform; // remove?
 		if (canAttackPlayer)
 		{
 			isAttacking = true;
@@ -53,6 +53,10 @@ public abstract class EnemyController : MonoBehaviour
 			isAttacking = false;
 		}
 		DetermineDirection();
+		if (animator.gameObject.activeSelf)
+		{
+			Animate();
+		}
 	}
 	
 	void FixedUpdate ()
@@ -110,6 +114,19 @@ public abstract class EnemyController : MonoBehaviour
 		Vector2 localScale = gameObject.transform.localScale;
 		localScale.x *= -1;
 		transform.localScale = localScale;
+	}
+
+	void Animate ()
+	{
+		if (!isAttacking)
+		{
+			animator.SetBool("Walk", true);
+		} 
+		else if (isAttacking)
+		{
+			animator.SetBool("Walk", false);
+		}
+
 	}
 
 

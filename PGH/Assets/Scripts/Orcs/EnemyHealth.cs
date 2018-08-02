@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour 
 {
 	private Animator animator;
+
+	public GameObject deathVFX;
 	public bool isAlive = true;
 	public float currentHealth;
-	public float maxHealth = 1;
+	public float maxHealth;
 	// Use this for initialization
 	void Start () 
 	{
@@ -20,8 +22,9 @@ public class EnemyHealth : MonoBehaviour
 	{
 		if (!isAlive && gameObject != null)
 		{
-			animator.SetTrigger("Dead");
-				Destroy(gameObject, 0.5f);
+				Instantiate (deathVFX, gameObject.transform.position, gameObject.transform.rotation);
+				Destroy(gameObject, 0f);
+				
 		}
 		
 	}

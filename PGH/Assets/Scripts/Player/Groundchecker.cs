@@ -11,18 +11,28 @@ public class Groundchecker : MonoBehaviour
 		player = gameObject.GetComponentInParent<PlayerController>();
 	}
 
-	void OnTriggerEnter2D(Collider2D collider)
+	void OnTriggerEnter2D(Collider2D other)
 	{
-		player.grounded = true;
+		if (other.tag != "Scanner")
+		{
+			player.grounded = true;
+		}
 	}
 
-	void OnTriggerStay2D(Collider2D collider)
+	void OnTriggerStay2D(Collider2D other)
 	{
-		player.grounded = true;
+		if (other.tag != "Scanner")
+		{
+			player.grounded = true;
+		}
+		
 	}
 
-	void OnTriggerExit2D(Collider2D collider)
+	void OnTriggerExit2D(Collider2D other)
 	{
-		player.grounded = false;
+		if (other.tag != "Scanner")
+		{
+			player.grounded = false;
+		}
 	}
 }

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 	public float playerSpeed;
 
 	// Player direction.
-	private bool isFacingRight;
+	public bool isFacingRight;
 
 	// Jumping.
 	public int playerJumpPower;
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	private bool jumped;
 
 	// Dashing.
-	private bool isDashing;
+	public bool isDashing;
 	public float dashSpeed;
 	public int tapsToDash;
 	public float dashResetTime;
