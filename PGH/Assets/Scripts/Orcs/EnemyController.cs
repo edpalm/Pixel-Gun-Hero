@@ -12,7 +12,7 @@ public abstract class EnemyController : MonoBehaviour
 	// Patrol settings.
 	public float enemyStartingPosition;
 	public float enemyPatrolTurnPosition;
-	public int patrolRange;
+	public float patrolRange;
 
 	// Movement.
 	public float movementSpeed;
@@ -25,25 +25,30 @@ public abstract class EnemyController : MonoBehaviour
 	public float attackRate;
 	private float nextAttack;
 
-	// Players position for attack directions.
-	GameObject player;
-	protected Transform PlayerXPosition;
+	// Set to true in inspector to create stationary enemies.
+	public bool idle;
 	
 	// Use this for initialization
 	void Start () 
 	{
-		player = GameObject.FindGameObjectWithTag("Player");
+		// Set facing depending on initial facing.
+		if (gameObject.transform.localScale.x < 0)
+		{
+			isFacingRight = false;
+		}
+		else if (gameObject.transform.localScale.x > 0)
+		{
+			isFacingRight = true;
+		}
 		enemyRigidBody = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		enemyStartingPosition = transform.position.x;
 		enemyPatrolTurnPosition = enemyStartingPosition + patrolRange;
-		isFacingRight = true;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		PlayerXPosition = player.transform; // remove?
 		if (canAttackPlayer)
 		{
 			isAttacking = true;
@@ -52,7 +57,10 @@ public abstract class EnemyController : MonoBehaviour
 		{
 			isAttacking = false;
 		}
-		DetermineDirection();
+		if (!idle)
+		{
+			DetermineDirection();
+		}
 		if (animator.gameObject.activeSelf)
 		{
 			Animate();
@@ -66,12 +74,16 @@ public abstract class EnemyController : MonoBehaviour
 			if (Time.time > nextAttack)
 			{
 				Attack();
-			nextAttack = Time.time + attackRate;
+				nextAttack = Time.time + attackRate;
 			}
 		}
-		else // if !isAttacking
+		else if (!isAttacking && !idle)
 		{
 			Patrol();
+		}
+		else if (idle)
+		{
+			enemyRigidBody.velocity = Vector2.zero;
 		}
 	}
 	
@@ -92,7 +104,6 @@ public abstract class EnemyController : MonoBehaviour
 		if (moveRight)
 		{
 			enemyRigidBody.velocity = Vector2.right * movementSpeed;
-			// enemyRigidBody.AddForce(Vector2.right * movementSpeed * Time.deltaTime);
 			if (!isFacingRight)
 			{
 				InvertEnemyDirection();
@@ -118,11 +129,11 @@ public abstract class EnemyController : MonoBehaviour
 
 	void Animate ()
 	{
-		if (!isAttacking)
+		if (!isAttacking && !idle)
 		{
 			animator.SetBool("Walk", true);
 		} 
-		else if (isAttacking)
+		else if (isAttacking || idle)
 		{
 			animator.SetBool("Walk", false);
 		}

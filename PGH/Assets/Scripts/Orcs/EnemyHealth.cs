@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour 
 {
-	private Animator animator;
-
 	public GameObject deathVFX;
 	public bool isAlive = true;
 	public float currentHealth;
@@ -14,7 +12,6 @@ public class EnemyHealth : MonoBehaviour
 	void Start () 
 	{
 		currentHealth = maxHealth;
-		animator = gameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame

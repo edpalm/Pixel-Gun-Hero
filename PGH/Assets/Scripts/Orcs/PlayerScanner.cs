@@ -7,7 +7,8 @@ public class PlayerScanner : MonoBehaviour
 	private EnemyController enemyController;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		enemyController = gameObject.GetComponentInParent<EnemyController>();
 	}
 	

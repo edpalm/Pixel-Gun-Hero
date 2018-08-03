@@ -20,7 +20,7 @@ public class Bomb : MonoBehaviour
 	} */
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag != "Enemy" && other.tag != "Scanner")
+		if (other.tag != "Enemy" && other.tag != "Scanner" && other.tag != "EnemyProjectile")
 		{
 			if (other.tag == "Player")
 			{
@@ -29,8 +29,5 @@ public class Bomb : MonoBehaviour
 			Destroy(gameObject);
 		  Instantiate (explosion, (Vector2)transform.position + explosionOffset * transform.localScale.x, transform.rotation);
 		}
-		
-		// Instantiate(explosion, transform.position, Quaternion.identity);
-	// Instantiate (explosion, (Vector2)transform.position + explosionOffset * transform.localScale.x, Quaternion.identity);
 	}
 }

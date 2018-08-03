@@ -53,15 +53,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\dashDustGenerator.cs" />
+     <Compile Include="Assets\DashDustGenerator.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraSystem.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Orcs\bombdropper.cs" />
+     <Compile Include="Assets\Scripts\Orcs\Boomer\Boomer.cs" />
      <Compile Include="Assets\Scripts\Orcs\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Orcs\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Orcs\Ofly.cs" />
      <Compile Include="Assets\Scripts\Orcs\orcDeath.cs" />
      <Compile Include="Assets\Scripts\Orcs\PlayerScanner.cs" />
+     <Compile Include="Assets\Scripts\Orcs\Warrior.cs" />
      <Compile Include="Assets\Scripts\Orcs\Wizard.cs" />
      <Compile Include="Assets\Scripts\PlatformFall.cs" />
      <Compile Include="Assets\Scripts\Player\Groundchecker.cs" />
@@ -69,6 +71,7 @@
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Projectiles\Bomb.cs" />
      <Compile Include="Assets\Scripts\Projectiles\bombExplosion.cs" />
+     <Compile Include="Assets\Scripts\Projectiles\Boomerang.cs" />
      <Compile Include="Assets\Scripts\Projectiles\BulletBehaviour.cs" />
      <Compile Include="Assets\Scripts\Projectiles\WizardBullet.cs" />
      <Compile Include="Assets\Scripts\World\DeathBox.cs" />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dashDustGenerator : MonoBehaviour 
+public class DashDustGenerator : MonoBehaviour 
 {
 	PlayerController player;
 	public GameObject dashVfx;

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114223501156846440}
   m_Layer: 0
   m_Name: WizardBullet
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  travelTime: 100
+  travelTime: 5
   bulletSpeed: 10
   velocity: {x: 0, y: 0}
 --- !u!212 &212172761467255420

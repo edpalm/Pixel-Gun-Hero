@@ -10,11 +10,11 @@ public class WizardBullet : MonoBehaviour
 
 	public float bulletSpeed;
 	public Vector2 velocity;
-
+	
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		gameObject.GetComponent<Rigidbody2D>().velocity = velocity * bulletSpeed;
-		Debug.Log("WizardBullet Spawned");
 		if (GetComponent<Rigidbody2D>().velocity.x > 0)
 		{
 			GetComponent<SpriteRenderer>().flipX = false;
@@ -30,7 +30,7 @@ public class WizardBullet : MonoBehaviour
 	}
 	void OnTriggerEnter2D(Collider2D other)
 	{	
-		if (gameObject != null && other.tag != "Scanner")
+		if (gameObject != null && other.tag != "Scanner" && other.tag != "EnemyProjectile")
 		{
 			Destroy(gameObject);
 		}
@@ -38,7 +38,7 @@ public class WizardBullet : MonoBehaviour
 		{
 			Debug.Log("Player Hit!");
 			other.gameObject.GetComponent<Health>().TakeDamage(damage);
-			
+			Destroy(gameObject);
 		}
 	}
 }

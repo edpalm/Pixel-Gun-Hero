@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - movementFx
   - Scanner
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX

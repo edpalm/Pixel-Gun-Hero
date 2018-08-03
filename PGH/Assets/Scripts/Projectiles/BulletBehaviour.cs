@@ -12,16 +12,23 @@ public class BulletBehaviour : MonoBehaviour
 
 	public float bulletSpeed;
 
+	public GameObject impactVfx;
+
+	public float impactVfxDuration;
+
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		gameObject.GetComponent<Rigidbody2D>().velocity = velocity * bulletSpeed;
 		if (GetComponent<Rigidbody2D>().velocity.x > 0)
 		{
 			GetComponent<SpriteRenderer>().flipX = false;
+			impactVfx.GetComponent<SpriteRenderer>().flipX = false;
 		}
 		else if (GetComponent<Rigidbody2D>().velocity.x < 0)
 		{
 			GetComponent<SpriteRenderer>().flipX = true;
+			impactVfx.GetComponent<SpriteRenderer>().flipX = true;
 		}
 
 		if (gameObject != null)
@@ -39,6 +46,8 @@ public class BulletBehaviour : MonoBehaviour
 		if (gameObject != null && other.tag != "Scanner" && other.tag != "Player")
 		{
 			Destroy(gameObject);
+			GameObject impact = (GameObject)Instantiate(impactVfx, gameObject.transform.position, gameObject.transform.rotation);	
+			Destroy(impact, impactVfxDuration);
 		}
 		if (other.gameObject.tag == "Enemy")
 		{
