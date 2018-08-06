@@ -26,11 +26,20 @@ public abstract class EnemyController : MonoBehaviour
 	private float nextAttack;
 
 	// Set to true in inspector to create stationary enemies.
+	// Stops all movement and directional behaviour.
 	public bool idle;
-	
+
+	public bool cantPatrol;
+
+	// Player ref.
+	protected PlayerController player;
+
+	[HideInInspector]
+	public float playerXPosition;
 	// Use this for initialization
 	void Start () 
 	{
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 		// Set facing depending on initial facing.
 		if (gameObject.transform.localScale.x < 0)
 		{
@@ -49,6 +58,7 @@ public abstract class EnemyController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		playerXPosition = GameObject.FindGameObjectWithTag("Player").transform.position.x;
 		if (canAttackPlayer)
 		{
 			isAttacking = true;
@@ -57,7 +67,7 @@ public abstract class EnemyController : MonoBehaviour
 		{
 			isAttacking = false;
 		}
-		if (!idle)
+		if (!idle && !canAttackPlayer)
 		{
 			DetermineDirection();
 		}
@@ -77,7 +87,7 @@ public abstract class EnemyController : MonoBehaviour
 				nextAttack = Time.time + attackRate;
 			}
 		}
-		else if (!isAttacking && !idle)
+		else if (!isAttacking && !idle && !cantPatrol)
 		{
 			Patrol();
 		}
