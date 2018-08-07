@@ -8,7 +8,7 @@ public class Boomer : EnemyController
 	public Transform boomerangSpawner;
 
 	// Use this for initialization
-	public override void Attack()
+	protected override void Attack()
 	{
 	//	animator.SetTrigger("Attack");
 		enemyRigidBody.velocity = Vector2.zero;
