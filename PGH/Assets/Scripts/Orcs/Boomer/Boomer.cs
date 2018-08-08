@@ -10,10 +10,8 @@ public class Boomer : EnemyController
 	// Use this for initialization
 	protected override void Attack()
 	{
-	//	animator.SetTrigger("Attack");
 		enemyRigidBody.velocity = Vector2.zero;
-		animator.SetTrigger("Attack");
-		Debug.Log("boomer attacking!");	
+		animator.SetTrigger("Attack");	
 		if (isFacingRight)
 		{
 			GameObject boomerangInstance = (GameObject)Instantiate (boomerang, boomerangSpawner.position, boomerangSpawner.rotation);	

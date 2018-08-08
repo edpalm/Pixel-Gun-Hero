@@ -61,11 +61,11 @@
      <Compile Include="Assets\Scripts\Attacks\PlayerAttacks\BulletBehaviour.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraSystem.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Main Menu\SceneSelect.cs" />
      <Compile Include="Assets\Scripts\Orcs\Boomer\Boomer.cs" />
      <Compile Include="Assets\Scripts\Orcs\Common\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Orcs\Common\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\Orcs\Common\PlayerScanner.cs" />
-     <Compile Include="Assets\Scripts\Orcs\Ofly\bombdropper.cs" />
      <Compile Include="Assets\Scripts\Orcs\Ofly\Ofly.cs" />
      <Compile Include="Assets\Scripts\Orcs\Warrior\ChargeScanner.cs" />
      <Compile Include="Assets\Scripts\Orcs\Warrior\Warrior.cs" />

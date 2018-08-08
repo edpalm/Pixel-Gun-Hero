@@ -7,7 +7,8 @@ public class Groundchecker : MonoBehaviour
 	private PlayerController player;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		player = gameObject.GetComponentInParent<PlayerController>();
 	}
 

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour 
+{
 
 	private Rigidbody2D rigidBody2d;
 	private Animator animator;
@@ -12,18 +13,22 @@ public class PlayerController : MonoBehaviour {
 	private bool isRunning;
 	public float initialSpeed;
 	public float runMultiplier;
-	public float playerSpeed;
+	private float playerSpeed;
 
 	// Player direction.
+	[HideInInspector]
 	public bool isFacingRight;
 
 	// Jumping.
 	public int playerJumpPower;
+
+	[HideInInspector]
 	public bool grounded;
 	private bool canDoubleJump;
 	private bool jumped;
 
 	// Dashing.
+	[HideInInspector]
 	public bool isDashing;
 	public float dashSpeed;
 	public int tapsToDash;
@@ -43,7 +48,8 @@ public class PlayerController : MonoBehaviour {
 	private bool attack;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		canDashMidAir = true;
 		attack = false;
 		jumped = false;
@@ -57,7 +63,8 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		CheckPlayerInput();
 		if (grounded)	
 		{
@@ -103,7 +110,7 @@ public class PlayerController : MonoBehaviour {
 	/// Check double tap of left/right movement hotkeys.
 	/// Set dash action.
 	///</summary>
-	void CheckForDoubleTap()
+	void CheckForDoubleTap ()
 	{
 		if (Input.GetButtonDown("Horizontal"))
 		{
@@ -150,7 +157,7 @@ public class PlayerController : MonoBehaviour {
 	///<summary>
 	/// Change the direction the player is facing.
 	///</summary>
-	void InvertPlayerDirection()
+	void InvertPlayerDirection ()
 	{
 		isFacingRight = !isFacingRight;
 		Vector2 localScale = gameObject.transform.localScale;
@@ -160,7 +167,7 @@ public class PlayerController : MonoBehaviour {
 	///<summary>
 	/// Perform player action based on action variables.
 	///</summary>
-	void PerformActions()
+	void PerformActions ()
 	{	
 		if (isDashing)
 		{
@@ -234,7 +241,7 @@ public class PlayerController : MonoBehaviour {
 	///<summary>
 	/// Animate the player model.
 	///</summary>
-	void Animate()
+	void Animate ()
 	{
 		if (!grounded && Input.GetButtonDown("Gun") && Time.time > nextFire )
 		{

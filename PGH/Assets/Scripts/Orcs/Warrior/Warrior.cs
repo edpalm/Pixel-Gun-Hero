@@ -9,28 +9,30 @@ public class Warrior : EnemyController
 	// public bool isCharging;
 	public float chargeSpeed;
 	
-	public bool isCharging;
+	private bool isCharging;
 	
+	[HideInInspector]
 	public bool playerInRange;
 
 	private int attacksPerformedAfterCharge = 0;
+	
+	// Number of attacks before resetting
 	public int maxAttacks;
 
-	public bool resetCharge;
+	private bool resetCharge;
 	public float chargeResetTime;
-	public float timer = 0f;
+	private float timer = 0f;
 
  	public GameObject attack;
 	public Transform attackSpawner;
 
-	protected override void Update()
+	protected override void Update ()
 	{
 		if (resetCharge)
 		{
 			timer += Time.deltaTime;
 			if(timer > chargeResetTime)
 			{
-				Debug.Log("Resetting postcharge");
 				playerInRange = false;
 				isCharging = false;
 				attacksPerformedAfterCharge = 0;
@@ -59,7 +61,7 @@ public class Warrior : EnemyController
 		}
 	}
 
-	protected override void FixedUpdate()
+	protected override void FixedUpdate ()
 	{
 		if (isAttacking && !isCharging)
 		{
@@ -93,21 +95,20 @@ public class Warrior : EnemyController
 		attacksPerformedAfterCharge ++;
 	}
 
-	IEnumerator Charge()
+	IEnumerator Charge ()
 	{
-		Debug.Log("Charging");
-		scanner.SetActive(false);
-		chargeScanner.SetActive(true);
-		Vector3 playerPosition  = GameObject.FindGameObjectWithTag("Player").transform.position;
-		Vector3 chargeEndPosition = new Vector3(playerPosition.x, gameObject.transform.position.y, gameObject.transform.position.z);
+		scanner.SetActive(false); // disable player detecion.
+		chargeScanner.SetActive(true); // enable player in range detection.
+		Vector2 playerPosition  = GameObject.FindGameObjectWithTag("Player").transform.position;
+		Vector2 chargeEndPosition = new Vector3(playerPosition.x, gameObject.transform.position.y);
 		while (Mathf.Abs(playerPosition.x - gameObject.transform.position.x) > 1 && !playerInRange)
 		{
-		  gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, chargeEndPosition, chargeSpeed * Time.deltaTime);			
+			// If not close to player, keep charging.
+		  gameObject.transform.position = Vector2.Lerp(gameObject.transform.position, chargeEndPosition, chargeSpeed * Time.deltaTime);			
 			yield return new WaitForEndOfFrame();
-					
 		}
 	} 
-	protected override void Animate()
+	protected override void Animate ()
 	{
 		if (!idle && !resetCharge)
 		{

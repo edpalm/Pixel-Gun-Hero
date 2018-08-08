@@ -12,12 +12,14 @@ void Start ()
 	gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 }
 void OnTriggerEnter2D(Collider2D other)
-	{
-		
-		
-		if(other.gameObject.tag == "Player")
+	{	
+		if(other.tag == "Player")
 		{
 			gameManager.EndGame();
+		}
+		if (other.tag != "Player" && other.gameObject != null)
+		{
+			Destroy(other.gameObject);
 		}
 	}
 }

@@ -12,7 +12,7 @@ public class PlayerScanner : MonoBehaviour
 		enemyController = gameObject.GetComponentInParent<EnemyController>();
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.tag == "Player")
 		{
@@ -20,7 +20,7 @@ public class PlayerScanner : MonoBehaviour
 		}
 	}
  
-	void OnTriggerExit2D(Collider2D other)
+	void OnTriggerExit2D (Collider2D other)
 	{
 		if (other.tag == "Player")
 		{

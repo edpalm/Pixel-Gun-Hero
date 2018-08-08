@@ -15,12 +15,12 @@ void Start ()
 	}
 }
 	
-	
-void OnTriggerEnter2D(Collider2D other)
+// Deal damage to player if hit.
+// Destroy attack.	
+void OnTriggerEnter2D (Collider2D other)
 	{	
 		if (other.tag == "Player")
 		{
-			Debug.Log("Player Hit!");
 			other.gameObject.GetComponent<Health>().TakeDamage(damage);
 			if (gameObject != null)
 			{

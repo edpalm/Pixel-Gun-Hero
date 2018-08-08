@@ -9,9 +9,12 @@ public class WizardBullet : MonoBehaviour
 	public float travelTime;
 
 	public float bulletSpeed;
+
+	[HideInInspector]
 	public Vector2 velocity;
 	
 	// Use this for initialization
+	// Set direction of sprite depending on which way it's going.
 	void Start () 
 	{
 		gameObject.GetComponent<Rigidbody2D>().velocity = velocity * bulletSpeed;
@@ -28,7 +31,10 @@ public class WizardBullet : MonoBehaviour
 			Destroy(gameObject, travelTime);
 		}
 	}
-	void OnTriggerEnter2D(Collider2D other)
+
+	// Deal damage to player if hit.
+	// Destroy bullet on collision.
+	void OnTriggerEnter2D (Collider2D other)
 	{	
 		if (gameObject != null && other.tag != "Scanner" && other.tag != "EnemyProjectile")
 		{
@@ -36,7 +42,6 @@ public class WizardBullet : MonoBehaviour
 		}
 		if (other.tag == "Player")
 		{
-			Debug.Log("Player Hit!");
 			other.gameObject.GetComponent<Health>().TakeDamage(damage);
 			if (gameObject != null)
 			{

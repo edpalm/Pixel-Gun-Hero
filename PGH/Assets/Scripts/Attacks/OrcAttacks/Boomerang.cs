@@ -7,26 +7,29 @@ public class Boomerang : MonoBehaviour
 	public float damage;
 	public float range;
 	public float boomerangSpeed;
-	public bool returning;
+	private bool returning;
 
-	public float thrownDistance;
+	private float thrownDistance;
 
-	public float startingPosition;
+	private float startingPosition;
 
-	public float currentPosition;
+	private float currentPosition;
 	
+	[HideInInspector]
 	public Vector2 velocity;
 
 	public float travelTime;
 
-	public bool changeDirection;
+	private bool changeDirection;
+
 	// Use this for initialization
+	// Set starting position to determine where boomerang should despawn upon returning back.
+	// Check direction of thrown boomerang. Set sprite X.
 	void Start () 
 	{
 		startingPosition = gameObject.GetComponent<Rigidbody2D>().transform.position.x;
 		returning = false;
 		gameObject.GetComponent<Rigidbody2D>().velocity = velocity * boomerangSpeed;
-		Debug.Log("Boomerang spawned");
 		if (GetComponent<Rigidbody2D>().velocity.x > 0)
 		{
 			GetComponent<SpriteRenderer>().flipX = false;
@@ -54,7 +57,6 @@ public class Boomerang : MonoBehaviour
 		}
 		else if (returning && changeDirection)
 		{
-			Debug.Log("Returning!");
 			if (GetComponent<Rigidbody2D>().velocity.x > 0)
 			{
 				gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.left * boomerangSpeed;
@@ -71,7 +73,7 @@ public class Boomerang : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter2D (Collider2D other)
 	{	
 		if (gameObject != null && other.tag != "Scanner" && other.tag != "EnemyProjectile" && other.gameObject != gameObject && other.tag != "PlayerBullet")
 		{
@@ -79,9 +81,7 @@ public class Boomerang : MonoBehaviour
 		}
 		if (other.tag == "Player")
 		{
-			Debug.Log("Player Hit!");
 			other.gameObject.GetComponent<Health>().TakeDamage(damage);
-			
 		}
 	}
 }

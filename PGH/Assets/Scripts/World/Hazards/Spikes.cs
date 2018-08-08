@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spikes : MonoBehaviour {
-
-	// Use this for initialization
-	private Health playerHealth;
-	public int damage = 1;
-
-	void Start()
-	{
-		playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-	}
+public class Spikes : MonoBehaviour 
+{
+	public int damage;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.gameObject.tag == "Player")
 		{
-			playerHealth.TakeDamage(damage);
+			other.GetComponent<Health>().TakeDamage(damage);
 		}
 	}
-
 }

@@ -31,11 +31,11 @@ public class MovingPlatform : MonoBehaviour
 	}
 		
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
-		platform.localPosition = Vector3.MoveTowards(platform.localPosition, moveTowards, speed * Time.deltaTime);
+		platform.localPosition = Vector2.MoveTowards(platform.localPosition, moveTowards, speed * Time.deltaTime);
 		// Change direction of traversal upon arrival at destination.
-		if (Vector3.Distance(platform.localPosition, moveTowards) == 0)
+		if (Vector2.Distance(platform.localPosition, moveTowards) == 0)
 		{
 			if (moveTowards == destinationPosition)
 			{

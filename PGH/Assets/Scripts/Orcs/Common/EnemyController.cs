@@ -10,33 +10,31 @@ public abstract class EnemyController : MonoBehaviour
 	protected Animator animator;
 
 	// Patrol settings.
-	public float enemyStartingPosition;
-	public float enemyPatrolTurnPosition;
+	protected float enemyStartingPosition;
+	protected float enemyPatrolTurnPosition;
 	public float patrolRange;
 
 	// Movement.
 	public float movementSpeed;
-	public bool isFacingRight;
-	public bool moveRight;
+	protected bool isFacingRight;
+	protected bool moveRight;
 	
 	// Attacking.
+	[HideInInspector]
 	public bool canAttackPlayer;
-	public bool isAttacking;
+	protected bool isAttacking;
 	public float attackRate;
 	protected float nextAttack;
 
 	// Set to true in inspector to create stationary enemies.
 	// Stops all movement and directional behaviour.
 	public bool idle;
-
-	// Player ref.
-	protected PlayerController player;
+	
 
 	[HideInInspector]
 	// Use this for initialization
 	protected virtual void Start () 
 	{
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 		// Set facing depending on initial facing.
 		if (gameObject.transform.localScale.x < 0)
 		{
@@ -93,6 +91,7 @@ public abstract class EnemyController : MonoBehaviour
 		}
 	}
 	
+	// Check which direction to move.
 	protected void DetermineDirection ()
 	{
 		if (enemyRigidBody.position.x <= enemyStartingPosition)
@@ -125,7 +124,7 @@ public abstract class EnemyController : MonoBehaviour
 		}
 	}
 
-	protected void InvertEnemyDirection()
+	protected void InvertEnemyDirection ()
 	{
 		isFacingRight = !isFacingRight;
 		Vector2 localScale = gameObject.transform.localScale;

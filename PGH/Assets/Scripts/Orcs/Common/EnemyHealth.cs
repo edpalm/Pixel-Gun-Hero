@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour 
 {
 	public GameObject deathVFX;
-	public bool isAlive = true;
-	public float currentHealth;
+	private bool isAlive;
+	private float currentHealth;
 	public float maxHealth;
 	// Use this for initialization
 	void Start () 
 	{
+		isAlive = true;
 		currentHealth = maxHealth;
 	}
 	
@@ -21,7 +22,6 @@ public class EnemyHealth : MonoBehaviour
 		{
 				Instantiate (deathVFX, gameObject.transform.position, gameObject.transform.rotation);
 				Destroy(gameObject, 0f);
-				
 		}
 		
 	}

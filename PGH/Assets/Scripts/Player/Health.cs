@@ -8,12 +8,13 @@ public class Health : MonoBehaviour
 	private Rigidbody2D playerBody;
 
 	private Animator animator;
-	public bool isAlive = true;
-	public float currentHealth;
+	private bool isAlive;
+	private float currentHealth;
 	public float maxHealth;
 	// Use this for initialization
 	void Start () 
 	{
+		isAlive = true;
 		currentHealth = maxHealth;
 		animator = gameObject.GetComponent<Animator>();
 		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
@@ -26,13 +27,13 @@ public class Health : MonoBehaviour
 		if (!isAlive)
 		{
 			animator.SetBool("isDead", true);
-			playerBody.velocity = new Vector2(0, 0);
+			playerBody.velocity = new Vector2(0, playerBody.velocity.y);
 			gameManager.EndGame();
 		}
 		
 	}
 
-	public void TakeDamage(float damage)
+	public void TakeDamage (float damage)
 	{
 		currentHealth = currentHealth - damage;
 		animator.SetTrigger("TookDamage");

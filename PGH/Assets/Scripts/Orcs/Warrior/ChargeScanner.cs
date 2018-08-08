@@ -12,7 +12,7 @@ private Warrior warrior;
 		warrior = gameObject.GetComponentInParent<Warrior>();
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.tag == "Player")
 		{
@@ -20,7 +20,7 @@ private Warrior warrior;
 		}
 	}
  
-	void OnTriggerExit2D(Collider2D other)
+	void OnTriggerExit2D (Collider2D other)
 	{
 		if (other.tag == "Player")
 		{

@@ -143,18 +143,18 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1255825957798790}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 500
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61250981064842712
 BoxCollider2D:
@@ -260,14 +260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8092ed958ecc61f4580839e819172250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStartingPosition: 0
-  enemyPatrolTurnPosition: 0
   patrolRange: 3
   movementSpeed: 3
-  isFacingRight: 0
-  moveRight: 0
   canAttackPlayer: 0
-  isAttacking: 0
   attackRate: 1
   idle: 0
   scanner: {fileID: 1545935122829324}
@@ -304,8 +299,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathVFX: {fileID: 1992568388375954, guid: 71b853969ec3eb14393567d184441130, type: 2}
-  isAlive: 1
-  currentHealth: 0
   maxHealth: 1
 --- !u!114 &114672604045348326
 MonoBehaviour:

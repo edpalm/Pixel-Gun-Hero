@@ -8,6 +8,7 @@ public class BulletBehaviour : MonoBehaviour
 
 	public float travelTime;
 
+	[HideInInspector]
 	public Vector2 velocity;
 
 	public float bulletSpeed;
@@ -17,6 +18,7 @@ public class BulletBehaviour : MonoBehaviour
 	public float impactVfxDuration;
 
 	// Use this for initialization
+	// Set sprite direction depending on projectile velocity.
 	void Start () 
 	{
 		gameObject.GetComponent<Rigidbody2D>().velocity = velocity * bulletSpeed;
@@ -30,18 +32,15 @@ public class BulletBehaviour : MonoBehaviour
 			GetComponent<SpriteRenderer>().flipX = true;
 			impactVfx.GetComponent<SpriteRenderer>().flipX = true;
 		}
-
 		if (gameObject != null)
 		{
 			Destroy(gameObject, travelTime);
 		}
 	}
 
-	// Update is called once per frame
-	 /* void Update () {
-	} */
-
-	void OnTriggerEnter2D(Collider2D other)
+	// Deal damage to enemy if hit.
+	// Destroy bullet on collision.
+	void OnTriggerEnter2D (Collider2D other)
 	{	
 		if (gameObject != null && other.tag != "Scanner" && other.tag != "Player")
 		{
@@ -51,9 +50,7 @@ public class BulletBehaviour : MonoBehaviour
 		}
 		if (other.gameObject.tag == "Enemy")
 		{
-			Debug.Log("Enemy Hit!");
-			other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-			
+			other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);	
 		}
 	}
 }

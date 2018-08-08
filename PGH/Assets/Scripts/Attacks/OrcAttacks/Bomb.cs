@@ -5,26 +5,17 @@ using UnityEngine;
 public class Bomb : MonoBehaviour 
 {
 	public int damage;
-	Health playerHealth;
 	public GameObject explosion;
-	public float explosionTime;
-	public Vector2 explosionOffset = new Vector2(0.4f, 0);
+	// Offset of explosion instance.
+	private Vector2 explosionOffset = new Vector2(0f, 1.2f);
 	// Use this for initialization
-	void Start () {
-		playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-	}
-	
-	// Update is called once per frame
-/* 	void Update () {
-		
-	} */
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.tag != "Enemy" && other.tag != "Scanner" && other.tag != "EnemyProjectile")
 		{
 			if (other.tag == "Player")
 			{
-				playerHealth.TakeDamage(damage);
+				other.GetComponent<Health>().TakeDamage(damage);
 			}
 			Destroy(gameObject);
 		  Instantiate (explosion, (Vector2)transform.position + explosionOffset * transform.localScale.x, transform.rotation);
