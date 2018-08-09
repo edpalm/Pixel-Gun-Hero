@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Warrior : EnemyController
  {
+	private bool chargeDone;
 	public GameObject scanner;
 	public GameObject chargeScanner;
-	// public bool isCharging;
+	
 	public float chargeSpeed;
 	
 	private bool isCharging;
@@ -41,6 +42,7 @@ public class Warrior : EnemyController
 				chargeScanner.SetActive(false);
 				resetCharge = false;
 				timer = 0f;
+				chargeDone = false;
 			}
 		}
 		else if (canAttackPlayer && !isCharging)
@@ -68,14 +70,13 @@ public class Warrior : EnemyController
 			isCharging = true;
 			StartCoroutine("Charge");
 		}
-		else if (isCharging && playerInRange && Time.time > nextAttack && attacksPerformedAfterCharge < maxAttacks)
-		{
-			Attack();
-			nextAttack = Time.time + attackRate;
-		}
-		else if (isCharging && attacksPerformedAfterCharge >= maxAttacks)
+		else if (chargeDone && attacksPerformedAfterCharge >= maxAttacks)
 		{
 			resetCharge = true;
+		}
+		else if (isCharging && chargeDone )
+		{
+			Attack();
 		}
 		else if (!isAttacking && !idle && !isCharging)
 		{
@@ -101,13 +102,15 @@ public class Warrior : EnemyController
 		chargeScanner.SetActive(true); // enable player in range detection.
 		Vector2 playerPosition  = GameObject.FindGameObjectWithTag("Player").transform.position;
 		Vector2 chargeEndPosition = new Vector3(playerPosition.x, gameObject.transform.position.y);
-		while (Mathf.Abs(playerPosition.x - gameObject.transform.position.x) > 1 && !playerInRange)
+		while (Mathf.Abs(playerPosition.x - gameObject.transform.position.x) > 0.5 && !playerInRange)
 		{
 			// If not close to player, keep charging.
 		  gameObject.transform.position = Vector2.Lerp(gameObject.transform.position, chargeEndPosition, chargeSpeed * Time.deltaTime);			
 			yield return new WaitForEndOfFrame();
 		}
+		chargeDone = true;
 	} 
+
 	protected override void Animate ()
 	{
 		if (!idle && !resetCharge)

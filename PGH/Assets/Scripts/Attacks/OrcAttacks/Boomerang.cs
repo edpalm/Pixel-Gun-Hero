@@ -75,13 +75,16 @@ public class Boomerang : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D other)
 	{	
-		if (gameObject != null && other.tag != "Scanner" && other.tag != "EnemyProjectile" && other.gameObject != gameObject && other.tag != "PlayerBullet")
+		if (gameObject != null && other.tag != "Scanner" && other.tag != "EnemyProjectile" && other.gameObject != gameObject && other.tag != "PlayerBullet" && other.tag != "Player")
 		{
-			Destroy(gameObject);
+			// Ricochet of walls etc.
+			returning = true;
+			changeDirection = true;
 		}
-		if (other.tag == "Player")
+		if (other.tag == "Player" && gameObject != null)
 		{
 			other.gameObject.GetComponent<Health>().TakeDamage(damage);
+			Destroy(gameObject);
 		}
 	}
 }

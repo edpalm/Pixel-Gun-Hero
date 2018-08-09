@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour 
 {
 	private PlayerController playerController;
+	private Rigidbody2D playerbody;
 	private bool gameEnded;
 	private bool levelCompleted;
 	private GameObject gameOverText;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 	void Start () 
 	{
 		playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+		playerbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
 		gameOverText = GameObject.FindGameObjectWithTag("GameOver");
 		levelFinishedText = GameObject.FindGameObjectWithTag("LevelFinished");
 		gameEnded = false;
@@ -52,5 +54,14 @@ public class GameManager : MonoBehaviour
 		levelCompleted = true;
 		playerController.enabled = false;
 		levelFinishedText.gameObject.SetActive(true);
+		StartCoroutine("StopPlayerMovement");
+	}
+	IEnumerator StopPlayerMovement ()
+	{
+		while (Mathf.Abs(playerbody.velocity.x) > 0)
+		{
+			playerbody.velocity = new Vector2(playerbody.velocity.x - Time.deltaTime, playerbody.velocity.y - Time.deltaTime);
+			yield return new WaitForEndOfFrame();
+		}
 	}
 }

@@ -17,7 +17,7 @@ void OnTriggerEnter2D(Collider2D other)
 		{
 			gameManager.EndGame();
 		}
-		if (other.tag != "Player" && other.gameObject != null)
+		if (other.tag != "Player" && other.gameObject != null && other.tag != "Scanner")
 		{
 			Destroy(other.gameObject);
 		}
