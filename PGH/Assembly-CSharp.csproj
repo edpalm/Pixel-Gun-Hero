@@ -53,12 +53,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LevelComplete.cs" />
      <Compile Include="Assets\Scripts\Attacks\OrcAttacks\Bomb.cs" />
      <Compile Include="Assets\Scripts\Attacks\OrcAttacks\bombExplosion.cs" />
      <Compile Include="Assets\Scripts\Attacks\OrcAttacks\Boomerang.cs" />
      <Compile Include="Assets\Scripts\Attacks\OrcAttacks\WarriorAttack.cs" />
      <Compile Include="Assets\Scripts\Attacks\OrcAttacks\WizardBullet.cs" />
      <Compile Include="Assets\Scripts\Attacks\PlayerAttacks\BulletBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Camera\CameraChange.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraSystem.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Main Menu\SceneSelect.cs" />
